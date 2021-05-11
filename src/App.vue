@@ -6,6 +6,7 @@
 
 <script>
 import ToSend from './components/ToSend.vue';
+import "tailwindcss/tailwind.css"
 
 export default {
   name: 'App',

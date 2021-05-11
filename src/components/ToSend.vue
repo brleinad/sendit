@@ -1,8 +1,12 @@
 <template>
-<div>
-  <h2>To Send</h2>
+<div class="container mx-auto">
+  <h2 class="text-center">To Send</h2>
   <AddToSend @addClimbEvent="addClimbToSend"/>
-  <ClimbCard v-for="climb in climbs" :key="climb.name" :climb="climb"/>
+  <ul class="divide-y divide-gray-200">
+    <li v-for="(climb, index) in climbs" :key="index" class="py-4 flex">
+      <ClimbCard :climb="climb"/>
+    </li>
+  </ul>
 </div>
 </template>
 
@@ -18,12 +22,26 @@ export default {
   },
   data: function() {
     return {
-      climbs: [{
+      climbs: [
+        {
         name: 'Apollon',
         grade: '5.11',
         style: 'trad',
         sent: false,
-      }],
+      },
+        {
+        name: 'Orgasmotron',
+        grade: '5.12',
+        style: 'sport',
+        sent: false,
+      },
+        {
+        name: 'Moby Dick',
+        grade: '5.11',
+        style: 'sport',
+        sent: false,
+      },
+      ],
     }
   },
   methods: {
