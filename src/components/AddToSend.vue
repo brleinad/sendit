@@ -3,17 +3,17 @@
   <div class="px-6">
     <label for="name" class="block text-sm font-medium text-gray-600">Climb Name</label>
     <div class="mt-1">
-      <input type="text" v-model="climb.name" placeholder="the nose" class=""/>
+      <input required type="text" v-model="climb.name" placeholder="the nose" class=""/>
     </div>
   </div>
 
   <div class="">
     <label for="grade" class="block text-sm font-medium text-gray-600">Grade</label>
     <div class="mt-1">
-      <input type="text" v-model="climb.grade" placeholder="5.13"/>
+      <input required type="text" v-model="climb.grade" placeholder="5.13"/>
     </div>
   </div>
-  <button @click="addClimb" class="inline-flex items-center px-2 py-1 border border-transparent text-xs rounded-xl font-medium shadow-sm text-white bg-blue-500 hover:bg-blue-300 focus:outline-none focus:ring-2">Add</button>
+  <button :disabled="isInvalidClimb" @click="addClimb" class="disabled:opacity-60 items-center px-2 py-1 border border-transparent text-xs rounded-xl font-medium shadow-sm text-white bg-blue-500 hover:bg-blue-300">Add</button>
 </div>
 </template>
 
@@ -45,8 +45,13 @@ export default {
       this.clearClimb();
     },
     clearClimb() {
-      this.climb = { emptyClimb };
+      this.climb = { ...emptyClimb };
     },
   },
+  computed: {
+    isInvalidClimb() {
+      return this.climb.name === '' || this.climb.grade === '';
+    }
+  }
 }
 </script>
